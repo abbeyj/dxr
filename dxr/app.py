@@ -712,3 +712,9 @@ def dictify_links(links):
                         'href': href}
                        for icon, title, href in items]}
             for order, heading, items in links]
+
+
+@dxr_blueprint.after_app_request
+def after_request_callback(response):
+    response.headers.setdefault("Cache-Control", "max-age=43200")
+    return response
